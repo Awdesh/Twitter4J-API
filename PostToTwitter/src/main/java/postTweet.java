@@ -28,6 +28,7 @@ public class postTweet
 
             twitter.setOAuthAccessToken(accessToken);
 
+	   //Retrieve tweets from home timeline.
             List<Status> statuses = twitter.getHomeTimeline();
             System.out.println("Showing home timeline.");
             for (Status status : statuses) {
@@ -36,14 +37,16 @@ public class postTweet
             }
 
             System.out.println("**********************************");
-
-            List<Status> messageList =  twitter.getFavorites();
+	
+  	    //Retrieve favorited tweets.
+            List<Status> favs =  twitter.getFavorites();
             System.out.println("Retrieving favorites");
-            for (Status message : messageList) {
-                System.out.println(message.getUser().getName() + ":" +
-                        message.getText());
+            for (Status fav : favs) {
+                System.out.println(fav.getUser().getName() + ":" +
+                        fav.getText());
             }
-
+	    
+	    //Post a tweet.
 	    twitter.updateStatus("Posting from Twitter4J API");
 
             System.out.println("Successfully updated the status in Twitter.");
